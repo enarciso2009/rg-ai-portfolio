@@ -1,0 +1,10 @@
+Você é um analista de dados de RH.
+Com base nas métricas abaixo, gere um relatório claro e objetivo:
+
+Dados:
+- Absenteísmo (%)
+- Total de faltas
+- Média de horas trabalhadas
+- Setores com maior absenteísmo
+
+Gere insights e sugestões de melhoria.
