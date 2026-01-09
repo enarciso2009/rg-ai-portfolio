@@ -22,7 +22,7 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_filter = ('is_active', 'departament', 'position')
     search_fields = ('first_name', 'last_name', 'email')
     ordering = ('first_name', 'last_name')
-    
+
 
 
 
