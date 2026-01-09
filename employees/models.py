@@ -1,6 +1,6 @@
 from django.db import models
 
-class Departament(models.Model):
+class Department(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -16,19 +16,20 @@ class Position(models.Model):
         ('SR', 'Senior'),
     ]
     title = models.CharField(max_length=100)
-    level = models.CharField(max_length=2, choices=LEVEL_CHOICES)
-    department = models.ForeignKey(Departament, on_delete=models.CASCADE, related_name='positions')
+    level = models.CharField(max_length=2, choices=LEVEL_CHOICES, default='JR')
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='positions')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.title} ({self.get_level_display()})'
+        return f'{self.title} - {self.get_level_display()}'
 
 class Employee(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    hire_date = models.DateField()
-    departament = models.ForeignKey(Departament, on_delete=models.SET_NULL, null=True, related_name='employees')
-    positions = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, related_name='employees')
+    hire_date = models.DateField(verbose_name="Data de contratação")
+    departament = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, related_name='employees')
+    position = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, related_name='employees')
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
